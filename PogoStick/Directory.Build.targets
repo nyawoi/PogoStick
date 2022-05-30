@@ -1,0 +1,19 @@
+﻿<Project DefaultTargets="Build">
+    <Target Name="DeployToStaxelBin" AfterTargets="Build">
+        <PropertyGroup>
+            <!-- Point to Staxel bin directory; edit as necessary -->
+            <StaxelBin>C:\Program Files (x86)\Steam\steamapps\common\Staxel\bin</StaxelBin>
+        </PropertyGroup>
+
+        <!-- Copy newly-built assembly to Staxel bin directory -->
+        <Copy
+            SourceFiles="$(TargetDir)$(AssemblyName).dll"
+            DestinationFolder="$(StaxelBin)"
+        />
+        <!-- Create mod file for assembly in Staxel bin directory -->
+        <WriteLinesToFile
+            File="$(StaxelBin)\$(AssemblyName).mod"
+            Lines="{}"
+        />
+    </Target>
+</Project>
